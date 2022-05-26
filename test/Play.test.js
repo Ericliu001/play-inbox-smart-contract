@@ -57,4 +57,11 @@ describe('Inbox', () => {
         assert.equal(INITIAL_MSG, message);
         console.log(message);
     });
+
+    it('can set the message.', async () => {
+        let message = 'Good morning!';
+        await inbox.methods.setMessage(message).send({from: accounts[0]});
+        const target = await inbox.methods.message().call();
+        assert.equal(message, target);
+    });
 });
